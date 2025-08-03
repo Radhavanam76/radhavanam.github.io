@@ -1,0 +1,67 @@
+body {
+  font-family: 'Pacifico', cursive;
+  margin: 0;
+  padding: 0;
+  background: #fffdf6;
+  color: #3a3a3a;
+}
+
+header {
+  text-align: center;
+  padding: 1rem;
+  background-color: #f2eecb;
+}
+
+.logo {
+  max-width: 120px;
+  margin-bottom: 0.5rem;
+}
+
+.tagline {
+  font-size: 1.2rem;
+  color: #6c8b47;
+}
+
+.banner {
+  background: url('banner.jpg') center/cover no-repeat;
+  padding: 2rem;
+  text-align: center;
+  color: white;
+  background-color: #9ccc65;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.card {
+  background-color: #fefce8;
+  border: 1px solid #dcd7c9;
+  border-radius: 15px;
+  padding: 1.2rem;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background-color: #fffde6;
+}
+
+.cart-note, .admin-note {
+  padding: 1.5rem;
+  background: #fff6d6;
+  margin: 1rem 2rem;
+  border-left: 5px solid #9ccc65;
+}
+
+footer {
+  text-align: center;
+  background-color: #f2eecb;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #5a5a5a;
+}
