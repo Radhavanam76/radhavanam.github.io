@@ -1,11 +1,43 @@
-<script type="module">
-  import { auth } from './firebase.js';
-  import { onAuthStateChanged } from 'firebase/auth';
+<!DOCTYPE html>
+<html>
+<head><title>Admin Dashboard</title></head>
+<body>
+  <h2>Admin Dashboard</h2>
+  <div id="products"></div>
+  <button onclick="logout()">Logout</button>
 
-  onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      // Not logged in — redirect to login
-      window.location.href = "/admin/login.html";
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+    import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "radhavanam-76.firebaseapp.com",
+      projectId: "radhavanam-76",
+      storageBucket: "radhavanam-76.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) return window.location.href = "admin.html";
+
+      const productsRef = collection(db, "products");
+      const snapshot = await getDocs(productsRef);
+      snapshot.forEach(doc => {
+        const p = doc.data();
+        document.getElementById("products").innerHTML += `<div>${p.name}: ${p.stock} in stock</div>`;
+      });
+    });
+
+    function logout() {
+      signOut(auth).then(() => window.location.href = "admin.html");
     }
-  });
-</script>
+  </script>
+</body>
+</html>
