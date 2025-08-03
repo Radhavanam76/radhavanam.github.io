@@ -1,43 +1,71 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Admin Login - RadhaVanam</title>
-  <script type="module" src="./login.js" defer></script>
+  <meta charset="UTF-8">
+  <title>Admin Login – RadhaVanam</title>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <style>
+    body {
+      font-family: cursive;
+      background-color: #f5f5dc;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-box {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      width: 300px;
+    }
+    h2 { text-align: center; margin-bottom: 1rem; }
+    input, button {
+      width: 100%;
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 1rem;
+    }
+  </style>
 </head>
 <body>
+
+<div class="login-box">
   <h2>Admin Login</h2>
-  <form id="loginForm">
-    <input type="email" id="email" placeholder="Admin Email" required />
-    <input type="password" id="password" placeholder="Password" required />
-    <button type="submit">Login</button>
-  </form>
-  <div id="errorMsg"></div>
+  <input type="email" id="email" placeholder="Admin Email">
+  <input type="password" id="password" placeholder="Password">
+  <button onclick="adminLogin()">Login</button>
+  <p id="error" style="color: red; font-size: 0.9rem;"></p>
+</div>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyAOjNNbZicYA0BdWxrJeaKo6a8-97B0edQ",
+    authDomain: "radhavanam-76.firebaseapp.com",
+    projectId: "radhavanam-76",
+    storageBucket: "radhavanam-76.appspot.com",
+    messagingSenderId: "39126946397",
+    appId: "1:39126946397:web:69bcfb4eb0bbc31a4733b4",
+    measurementId: "G-Q9R5M417CJ"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const auth = firebase.auth();
+
+  function adminLogin() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    auth.signInWithEmailAndPassword(email, password)
+      .then(() => {
+        window.location.href = "admin.html";
+      })
+      .catch(error => {
+        document.getElementById("error").innerText = "Login failed: " + error.message;
+      });
+  }
+</script>
+
 </body>
 </html>
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
-const auth = getAuth();
-
-const loginForm = document.getElementById("login-form");
-loginForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const email = loginForm["email"].value;
-  const password = loginForm["password"].value;
-
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      const user = userCredential.user;
-
-      // Temporary admin check
-      if (user.email === "admin@radhavanam.in") {
-        window.location.href = "/admin-dashboard.html"; // Replace with your admin page
-      } else {
-        alert("Access denied. You are not an admin.");
-      }
-    })
-    .catch((error) => {
-      console.error("Login failed:", error);
-      alert("Login failed: " + error.message);
-    });
-});
