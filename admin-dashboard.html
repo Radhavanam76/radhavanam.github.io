@@ -24,3 +24,14 @@
   </main>
 </body>
 </html>
+<script type="module">
+  import { auth } from './firebase.js';
+  import { onAuthStateChanged } from 'firebase/auth';
+
+  onAuthStateChanged(auth, (user) => {
+    if (!user) {
+      // Not logged in — redirect to login
+      window.location.href = "/admin/login.html";
+    }
+  });
+</script>
