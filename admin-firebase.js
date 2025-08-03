@@ -35,3 +35,29 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
+const auth = getAuth();
+
+const loginForm = document.getElementById("login-form");
+loginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const email = loginForm["email"].value;
+  const password = loginForm["password"].value;
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      const user = userCredential.user;
+
+      // Temporary admin check
+      if (user.email === "admin@radhavanam.in") {
+        window.location.href = "/admin-dashboard.html"; // Replace with your admin page
+      } else {
+        alert("Access denied. You are not an admin.");
+      }
+    })
+    .catch((error) => {
+      console.error("Login failed:", error);
+      alert("Login failed: " + error.message);
+    });
+});
