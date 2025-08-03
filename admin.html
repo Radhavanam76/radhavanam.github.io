@@ -1,63 +1,40 @@
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Admin Login - RadhaVanam</title>
-  <style>
-    body {
-      font-family: cursive;
-      background: #f0f4f8;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    .login-box {
-      background: white;
-      padding: 2rem;
-      border-radius: 16px;
-      box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
-      width: 300px;
-      text-align: center;
-    }
-    input {
-      width: 90%;
-      margin: 10px 0;
-      padding: 10px;
-      font-size: 1rem;
-    }
-    button {
-      padding: 10px 20px;
-      border: none;
-      background: green;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 10px;
-    }
-  </style>
-</head>
+<html>
+<head><title>Admin Login</title></head>
 <body>
-  <div class="login-box">
-    <h2>Admin Login</h2>
-    <input type="text" id="username" placeholder="Username" /><br />
-    <input type="password" id="password" placeholder="Password" /><br />
-    <button onclick="login()">Login</button>
-    <p id="error" style="color:red;"></p>
-  </div>
+  <h2>Admin Login</h2>
+  <form id="loginForm">
+    <input type="email" id="email" placeholder="Admin Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <button type="submit">Login</button>
+  </form>
 
-  <script>
-    function login() {
-      const user = document.getElementById('username').value;
-      const pass = document.getElementById('password').value;
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.0/firebase-auth.js";
 
-      if (user === 'admin' && pass === 'radhavanam123') {
-        window.location.href = "admin-dashboard.html";
-      } else {
-        document.getElementById('error').innerText = "Invalid credentials";
-      }
-    }
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "radhavanam-76.firebaseapp.com",
+      projectId: "radhavanam-76",
+      storageBucket: "radhavanam-76.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.getElementById("loginForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const email = loginForm.email.value;
+      const password = loginForm.password.value;
+
+      signInWithEmailAndPassword(auth, email, password)
+        .then(() => window.location.href = "dashboard.html")
+        .catch((error) => alert("Login failed: " + error.message));
+    });
   </script>
 </body>
 </html>
