@@ -1,1 +1,62 @@
-<!DOCTYPE html><html><head><title>Admin Panel</title></head><body><h1>Admin Login</h1></body></html>
+<!-- admin.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RadhaVanam Admin Panel</title>
+  <link rel="stylesheet" href="styles/admin.css" />
+</head>
+<body>
+  <div id="login-section" class="panel active">
+    <h2>Admin Login</h2>
+    <input type="email" id="email" placeholder="Admin Email" />
+    <input type="password" id="password" placeholder="Password" />
+    <button id="login-btn">Login</button>
+    <p id="login-error" class="error"></p>
+  </div>
+
+  <div id="dashboard-section" class="panel hidden">
+    <header>
+      <h1>RadhaVanam Admin Dashboard</h1>
+      <button id="logout-btn">Logout</button>
+    </header>
+
+    <section>
+      <h2>Edit Homepage Content</h2>
+      <label>Homepage Heading:</label>
+      <input type="text" id="homepage-heading" />
+      
+      <label>Welcome Text:</label>
+      <textarea id="homepage-text"></textarea>
+      
+      <label>Upload Banner Image:</label>
+      <input type="file" id="banner-upload" />
+    </section>
+
+    <section>
+      <h2>Theme Options</h2>
+      <select id="theme-selector">
+        <option value="pastel-light">Soft Pastel (Light)</option>
+        <option value="pastel-dark">Soft Pastel (Dark)</option>
+        <option value="earthy">Earthy Natural</option>
+        <option value="bright-floral">Bright Floral</option>
+      </select>
+    </section>
+
+    <section>
+      <h2>Shipping & Settings</h2>
+      <label>Free Shipping Threshold (₹):</label>
+      <input type="number" id="free-shipping" value="499" />
+
+      <label><input type="checkbox" id="cod-toggle" /> Enable Cash on Delivery</label>
+    </section>
+
+    <button id="save-btn">Save All</button>
+    <p id="save-status"></p>
+  </div>
+
+  <script type="module" src="scripts/firebase.js"></script>
+  <script type="module" src="scripts/admin.js"></script>
+</body>
+</html>
