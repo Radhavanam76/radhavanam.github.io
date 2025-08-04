@@ -1,1 +1,47 @@
-<!DOCTYPE html><html><head><title>RadhaVanam</title></head><body><h1>Welcome to RadhaVanam</h1></body></html>
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RadhaVanam – Plants & Seeds from the Heart of Nature</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body class="theme-soft-pastel">
+  <header>
+    <img src="assets/logo.png" alt="RadhaVanam Logo" class="logo" />
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html">Plants</a></li>
+        <li><a href="seeds.html">Seeds</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="cart.html">Cart</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <img src="assets/banner.jpg" alt="RadhaVanam Banner" />
+    <div class="hero-text">
+      <h1>Welcome to RadhaVanam</h1>
+      <p>Bringing sacred greenery to your doorstep from rural Telangana</p>
+    </div>
+  </section>
+
+  <section class="highlights">
+    <h2>Featured Products</h2>
+    <div class="product-grid" id="featured-products">
+      <!-- Products will be loaded dynamically via Firebase -->
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 RadhaVanam. All rights reserved.</p>
+  </footer>
+
+  <script src="scripts/firebase.js"></script>
+  <script src="scripts/main.js"></script>
+</body>
+</html>
