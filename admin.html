@@ -6,14 +6,98 @@
   <title>RadhaVanam Admin Panel</title>
   <link rel="stylesheet" href="styles/admin.css" />
   <script type="module" src="scripts/admin.js" defer></script>
+  <style>
+    /* Quick basic styling for layout clarity */
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: #6dbf47;
+      color: white;
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sidebar-toggle {
+      font-size: 1.5rem;
+      cursor: pointer;
+      display: none;
+    }
+
+    nav.sidebar {
+      background: #e6f4e6;
+      width: 200px;
+      padding: 1rem;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      height: 100%;
+      overflow-y: auto;
+      transition: transform 0.3s ease;
+    }
+
+    nav.sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    nav.sidebar li {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    main.main {
+      margin-left: 200px;
+      padding: 2rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .panel {
+      display: none;
+    }
+
+    .panel.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      nav.sidebar {
+        transform: translateX(-100%);
+      }
+
+      nav.sidebar.show {
+        transform: translateX(0);
+      }
+
+      .sidebar-toggle {
+        display: block;
+      }
+
+      main.main {
+        margin-left: 0;
+        padding: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
+
   <header>
+    <span class="sidebar-toggle" id="menuToggle">☰</span>
     <h1>🌿 RadhaVanam Admin</h1>
     <button id="logout">Logout</button>
   </header>
 
-  <nav class="sidebar">
+  <nav class="sidebar" id="sidebar">
     <ul>
       <li data-section="dashboard">Dashboard</li>
       <li data-section="products">Manage Products</li>
@@ -31,18 +115,18 @@
 
     <section id="products" class="panel">
       <h2>Add New Product</h2>
-      <input type="text" id="productName" placeholder="Plant or Seed Name" />
-      <input type="text" id="productDesc" placeholder="Short Description" />
-      <input type="number" id="productPrice" placeholder="Price (₹)" />
-      <input type="file" id="productImage" />
+      <input type="text" id="productName" placeholder="Plant or Seed Name" /><br/>
+      <textarea id="productDesc" placeholder="Short Description"></textarea><br/>
+      <input type="number" id="productPrice" placeholder="Price (₹)" /><br/>
+      <input type="file" id="productImage" /><br/>
       <button id="addProduct">Add Product</button>
       <div id="productList"></div>
     </section>
 
     <section id="blog" class="panel">
       <h2>Write Blog Post</h2>
-      <input type="text" id="blogTitle" placeholder="Blog Title" />
-      <textarea id="blogContent" placeholder="Blog Content"></textarea>
+      <input type="text" id="blogTitle" placeholder="Blog Title" /><br/>
+      <textarea id="blogContent" placeholder="Blog Content"></textarea><br/>
       <button id="postBlog">Post</button>
       <div id="blogList"></div>
     </section>
@@ -72,45 +156,8 @@
       <label>
         WhatsApp Order Number: 
         <input type="text" id="whatsappNumber" value="7997081634"/>
-      </label>
+      </label><br/>
       <button id="saveSettings">Save Settings</button>
-    </section>
-  </main>
-
-</body>
-</html>
-    <section id="products" class="panel">
-      <h2>Manage Products</h2>
-      <input type="text" placeholder="Product Name" id="productName" />
-      <textarea placeholder="Description" id="productDesc"></textarea>
-      <input type="text" placeholder="Price" id="productPrice" />
-      <input type="file" id="productImage" />
-      <button onclick="uploadProduct()">Add Product</button>
-      <div id="productList"></div>
-    </section>
-
-    <section id="blog" class="panel">
-      <h2>Manage Blog</h2>
-      <input type="text" placeholder="Blog Title" id="blogTitle" />
-      <textarea placeholder="Content" id="blogContent"></textarea>
-      <button onclick="uploadBlog()">Add Blog</button>
-      <div id="blogList"></div>
-    </section>
-
-    <section id="theme" class="panel">
-      <h2>Theme Settings</h2>
-      <label><input type="radio" name="theme" value="pastel" checked /> Soft Pastel</label><br />
-      <label><input type="radio" name="theme" value="earthy" /> Earthy</label><br />
-      <label><input type="radio" name="theme" value="floral" /> Bright Floral</label><br />
-      <button onclick="applyTheme()">Apply Theme</button>
-    </section>
-
-    <section id="settings" class="panel">
-      <h2>Site Settings</h2>
-      <input type="text" placeholder="WhatsApp Number" id="whatsappNumber" value="7997081634" />
-      <input type="file" id="logoUpload" />
-      <input type="file" id="bannerUpload" />
-      <button onclick="saveSettings()">Save</button>
     </section>
   </main>
 
@@ -141,7 +188,14 @@
       item.addEventListener("click", () => {
         sections.forEach((sec) => sec.classList.remove("active"));
         document.getElementById(item.dataset.section).classList.add("active");
+
+        // Hide sidebar on mobile
+        document.getElementById("sidebar").classList.remove("show");
       });
+    });
+
+    document.getElementById("menuToggle").addEventListener("click", () => {
+      document.getElementById("sidebar").classList.toggle("show");
     });
 
     // Placeholder functions
@@ -150,6 +204,6 @@
     window.applyTheme = () => alert("Apply Theme function goes here.");
     window.saveSettings = () => alert("Save Settings function goes here.");
   </script>
+
 </body>
 </html>
-
