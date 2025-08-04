@@ -1,0 +1,133 @@
+/* admin.css */
+
+/* Reset and basics */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f2f7f5;
+}
+
+/* Sidebar styling */
+.sidebar {
+  width: 240px;
+  background-color: #a1c9a1;
+  color: #fff;
+  padding: 20px;
+  position: fixed;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.sidebar h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-family: cursive;
+}
+
+.sidebar nav a {
+  display: block;
+  margin: 10px 0;
+  color: white;
+  text-decoration: none;
+  padding: 8px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+  background-color: #7ba37b;
+}
+
+/* Main content */
+.main {
+  margin-left: 240px;
+  padding: 20px;
+  flex: 1;
+  background-color: #fff;
+  overflow-y: auto;
+}
+
+h1 {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+section {
+  margin-bottom: 30px;
+}
+
+section label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+section input[type="text"],
+section input[type="file"],
+section textarea,
+section select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+
+section button {
+  background-color: #69a869;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: background 0.3s;
+}
+
+section button:hover {
+  background-color: #558855;
+}
+
+/* Theme preview */
+.theme-preview {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.theme-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.theme-box.pastel { background-color: #f2f7f5; }
+.theme-box.earthy { background-color: #e3d5ca; }
+.theme-box.floral { background-color: #fce8e6; }
+
+.theme-box.active {
+  border: 2px solid #000;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+  }
+
+  .main {
+    margin-left: 0;
+  }
+}
