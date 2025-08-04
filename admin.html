@@ -79,3 +79,77 @@
 
 </body>
 </html>
+    <section id="products" class="panel">
+      <h2>Manage Products</h2>
+      <input type="text" placeholder="Product Name" id="productName" />
+      <textarea placeholder="Description" id="productDesc"></textarea>
+      <input type="text" placeholder="Price" id="productPrice" />
+      <input type="file" id="productImage" />
+      <button onclick="uploadProduct()">Add Product</button>
+      <div id="productList"></div>
+    </section>
+
+    <section id="blog" class="panel">
+      <h2>Manage Blog</h2>
+      <input type="text" placeholder="Blog Title" id="blogTitle" />
+      <textarea placeholder="Content" id="blogContent"></textarea>
+      <button onclick="uploadBlog()">Add Blog</button>
+      <div id="blogList"></div>
+    </section>
+
+    <section id="theme" class="panel">
+      <h2>Theme Settings</h2>
+      <label><input type="radio" name="theme" value="pastel" checked /> Soft Pastel</label><br />
+      <label><input type="radio" name="theme" value="earthy" /> Earthy</label><br />
+      <label><input type="radio" name="theme" value="floral" /> Bright Floral</label><br />
+      <button onclick="applyTheme()">Apply Theme</button>
+    </section>
+
+    <section id="settings" class="panel">
+      <h2>Site Settings</h2>
+      <input type="text" placeholder="WhatsApp Number" id="whatsappNumber" value="7997081634" />
+      <input type="file" id="logoUpload" />
+      <input type="file" id="bannerUpload" />
+      <button onclick="saveSettings()">Save</button>
+    </section>
+  </main>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import { getAuth, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+    import { firebaseConfig } from './firebase.js';
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    document.getElementById("logout").addEventListener("click", () => {
+      signOut(auth).then(() => {
+        window.location.href = "login.html";
+      });
+    });
+
+    onAuthStateChanged(auth, (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+      }
+    });
+
+    const sections = document.querySelectorAll("section");
+    const navItems = document.querySelectorAll("nav li");
+
+    navItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        sections.forEach((sec) => sec.classList.remove("active"));
+        document.getElementById(item.dataset.section).classList.add("active");
+      });
+    });
+
+    // Placeholder functions
+    window.uploadProduct = () => alert("Upload Product function goes here.");
+    window.uploadBlog = () => alert("Upload Blog function goes here.");
+    window.applyTheme = () => alert("Apply Theme function goes here.");
+    window.saveSettings = () => alert("Save Settings function goes here.");
+  </script>
+</body>
+</html>
+
