@@ -1,4 +1,3 @@
-<!-- admin.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,57 +5,77 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RadhaVanam Admin Panel</title>
   <link rel="stylesheet" href="styles/admin.css" />
+  <script type="module" src="scripts/admin.js" defer></script>
 </head>
 <body>
-  <div id="login-section" class="panel active">
-    <h2>Admin Login</h2>
-    <input type="email" id="email" placeholder="Admin Email" />
-    <input type="password" id="password" placeholder="Password" />
-    <button id="login-btn">Login</button>
-    <p id="login-error" class="error"></p>
-  </div>
+  <header>
+    <h1>🌿 RadhaVanam Admin</h1>
+    <button id="logout">Logout</button>
+  </header>
 
-  <div id="dashboard-section" class="panel hidden">
-    <header>
-      <h1>RadhaVanam Admin Dashboard</h1>
-      <button id="logout-btn">Logout</button>
-    </header>
+  <nav class="sidebar">
+    <ul>
+      <li data-section="dashboard">Dashboard</li>
+      <li data-section="products">Manage Products</li>
+      <li data-section="blog">Manage Blog</li>
+      <li data-section="theme">Theme Settings</li>
+      <li data-section="settings">Site Settings</li>
+    </ul>
+  </nav>
 
-    <section>
-      <h2>Edit Homepage Content</h2>
-      <label>Homepage Heading:</label>
-      <input type="text" id="homepage-heading" />
-      
-      <label>Welcome Text:</label>
-      <textarea id="homepage-text"></textarea>
-      
-      <label>Upload Banner Image:</label>
-      <input type="file" id="banner-upload" />
+  <main>
+    <section id="dashboard" class="panel active">
+      <h2>Welcome Admin</h2>
+      <p>Edit content, manage plants, seeds, blogs & more.</p>
     </section>
 
-    <section>
-      <h2>Theme Options</h2>
-      <select id="theme-selector">
-        <option value="pastel-light">Soft Pastel (Light)</option>
-        <option value="pastel-dark">Soft Pastel (Dark)</option>
-        <option value="earthy">Earthy Natural</option>
-        <option value="bright-floral">Bright Floral</option>
+    <section id="products" class="panel">
+      <h2>Add New Product</h2>
+      <input type="text" id="productName" placeholder="Plant or Seed Name" />
+      <input type="text" id="productDesc" placeholder="Short Description" />
+      <input type="number" id="productPrice" placeholder="Price (₹)" />
+      <input type="file" id="productImage" />
+      <button id="addProduct">Add Product</button>
+      <div id="productList"></div>
+    </section>
+
+    <section id="blog" class="panel">
+      <h2>Write Blog Post</h2>
+      <input type="text" id="blogTitle" placeholder="Blog Title" />
+      <textarea id="blogContent" placeholder="Blog Content"></textarea>
+      <button id="postBlog">Post</button>
+      <div id="blogList"></div>
+    </section>
+
+    <section id="theme" class="panel">
+      <h2>Switch Theme</h2>
+      <select id="themeSelector">
+        <option value="pastel">Soft Pastel (Default)</option>
+        <option value="earthy">Earthy Green</option>
+        <option value="floral">Bright Floral</option>
       </select>
+      <button id="applyTheme">Apply Theme</button>
     </section>
 
-    <section>
-      <h2>Shipping & Settings</h2>
-      <label>Free Shipping Threshold (₹):</label>
-      <input type="number" id="free-shipping" value="499" />
-
-      <label><input type="checkbox" id="cod-toggle" /> Enable Cash on Delivery</label>
+    <section id="settings" class="panel">
+      <h2>Homepage Settings</h2>
+      <label>Upload Logo: <input type="file" id="logoUpload"/></label><br/>
+      <label>Upload Banner: <input type="file" id="bannerUpload"/></label><br/>
+      <label>
+        Enable Cash on Delivery:
+        <input type="checkbox" id="codToggle"/>
+      </label><br/>
+      <label>
+        Free Shipping Above (₹): 
+        <input type="number" id="freeShippingThreshold" value="500"/>
+      </label><br/>
+      <label>
+        WhatsApp Order Number: 
+        <input type="text" id="whatsappNumber" value="7997081634"/>
+      </label>
+      <button id="saveSettings">Save Settings</button>
     </section>
+  </main>
 
-    <button id="save-btn">Save All</button>
-    <p id="save-status"></p>
-  </div>
-
-  <script type="module" src="scripts/firebase.js"></script>
-  <script type="module" src="scripts/admin.js"></script>
 </body>
 </html>
