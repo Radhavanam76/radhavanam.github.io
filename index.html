@@ -71,13 +71,6 @@
 </style>
 </head>
 <body>
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js')
-      .then(() => console.log('Service Worker registered'))
-      .catch(err => console.log('Service Worker registration failed:', err));
-  }
-</script>
 
 <header>
   <h1>Radhavanam</h1>
@@ -151,8 +144,16 @@
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    // You could show an install button here if you want
+    // Optionally, show your own install button here
+    console.log("Install prompt saved, you can trigger it later.");
   });
+
+  // Register Service Worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(() => console.log('Service Worker registered'))
+      .catch(err => console.log('Service Worker registration failed:', err));
+  }
 </script>
 
 </body>
