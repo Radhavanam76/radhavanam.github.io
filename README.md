@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Radhavanam – Plants & Garden Supplies</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      background: #f3f7f0;
+      color: #2e4d2d;
+    }
+    header {
+      background-color: #2e4d2d;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    nav a {
+      margin: 0 10px;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      padding: 2rem;
+      background: url('https://source.unsplash.com/1600x600/?plants') center/cover no-repeat;
+      color: white;
+      text-shadow: 1px 1px 3px #000;
+      text-align: center;
+    }
+    .section {
+      padding: 2rem;
+      text-align: center;
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .product {
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      width: 250px;
+      padding: 1rem;
+    }
+    .product img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .contact-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #2e4d2d;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #e0eae0;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Radhavanam</h1>
+  <p>Plants, Seeds, Trays & Plant Bags</p>
+  <nav>
+    <a href="#products">Products</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h2>Grow Your Green Space</h2>
+  <p>Everything you need for your garden</p>
+</section>
+
+<section class="section" id="products">
+  <h2>Our Products</h2>
+  <div class="products">
+    <div class="product">
+      <img src="https://source.unsplash.com/250x150/?plant" alt="Plant" />
+      <h3>Live Plants</h3>
+      <p>Beautiful indoor and outdoor plants.</p>
+    </div>
+    <div class="product">
+      <img src="https://source.unsplash.com/250x150/?seeds" alt="Seeds" />
+      <h3>Seeds</h3>
+      <p>High-quality seeds for vegetables, fruits, and herbs.</p>
+    </div>
+    <div class="product">
+      <img src="https://source.unsplash.com/250x150/?tray" alt="Tray" />
+      <h3>Plant Trays</h3>
+      <p>Durable and reusable seedling trays.</p>
+    </div>
+    <div class="product">
+      <img src="https://source.unsplash.com/250x150/?plant-bag" alt="Plant Bags" />
+      <h3>Grow Bags</h3>
+      <p>Eco-friendly plant grow bags in various sizes.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <h2>About Radhavanam</h2>
+  <p>We are passionate about helping people grow their own green paradise. Whether you're starting a garden or expanding it, we provide everything you need — from seeds to pots, with love and care.</p>
+</section>
+
+<section class="section" id="contact">
+  <h2>Contact Us</h2>
+  <p>Ready to order? Reach us on WhatsApp.</p>
+  <a class="contact-btn" href="https://wa.me/91XXXXXXXXXX" target="_blank">📱 WhatsApp Us</a>
+</section>
+
+<footer>
+  &copy; 2025 Radhavanam. All rights reserved.
+</footer>
+
+</body>
+</html>
